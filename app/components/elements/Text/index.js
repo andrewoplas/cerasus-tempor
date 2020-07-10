@@ -24,6 +24,14 @@ Text.propTypes = {
   children: PropTypes.any,
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   align: PropTypes.oneOf(['left', 'center', 'right', 'justify']),
-  fontWeight: PropTypes.oneOf(['light', 'normal', 'medium', 'bold', 'extraBold']),
+  fontWeight: PropTypes.oneOf([
+    'light',
+    'normal',
+    'medium',
+    'bold',
+    'extraBold',
+    'number',
+    'numberBold',
+  ]),
   kind: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'small', 'paragraph']),
 };

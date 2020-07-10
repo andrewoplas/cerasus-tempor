@@ -1,15 +1,41 @@
 import { createAction, handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 
-export const types = {};
+export const key = 'TIME';
 
-export const initialState = {};
+export const types = {
+  SAVE_NOW: `${key}/SAVE_NOW`,
+  SAVE_LATER: `${key}/SAVE_LATER`,
+};
 
-const reducer = handleActions({}, initialState);
+export const initialState = {
+  savedNowTimes: [],
+  savedLaterTimes: [],
+};
 
-export const actions = {};
+const reducer = handleActions(
+  {
+    [types.SAVE_NOW]: (state, { payload }) => ({
+      savedNowTimes: [payload, ...state.times],
+    }),
+    [types.SAVE_LATER]: (state, { payload }) => ({
+      savedLaterTimes: [payload, ...state.times],
+    }),
+  },
+  initialState,
+);
 
-const selectState = (state) => state[types.MAIN] || initialState;
-export const selectors = {};
+export const actions = {
+  saveNow: createAction(types.SAVE_TIME),
+  saveLater: createAction(types.SAVE_TIME),
+};
+
+const selectState = (state) => state[key] || initialState;
+export const selectors = {
+  selectSavedNowTimes: () => createSelector(selectState, (state) => state.savedNowTimes),
+  selectSavedLaterTimes: () => createSelector(selectState, (state) => state.savedLaterTimes),
+  selectTimes: () =>
+    createSelector(selectState, (state) => [...state.savedNowTimes, ...state.savedLaterTimes]),
+};
 
 export default reducer;

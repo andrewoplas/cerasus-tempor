@@ -34,7 +34,7 @@ export const Container = ({ withScroll, spacing, style, children }) => {
   const [isConnected, setConnection] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
       setConnection(state.isConnected);
     });
 

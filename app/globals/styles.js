@@ -26,6 +26,8 @@ const textSize = {
   $emptyIconSize: 160,
 };
 const font = {
+  $fontNumber: 'OpenSans-Regular',
+  $fontNumberBold: 'OpenSans-Bold',
   $fontLight: 'TTNorms-Light',
   $fontLightItalic: 'TTNorms-LightItalic',
   $fontRegular: 'TTNorms-Regular',

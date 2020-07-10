@@ -7,7 +7,6 @@ export default function configureStore(initialState = {}) {
   const persistConfig = {
     key: 'root_timer',
     storage: AsyncStorage,
-    whitelist: [],
   };
   const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -7,7 +7,7 @@ import React from 'react';
 import { ScrollView, TouchableHighlight, View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import RNModal from 'react-native-modal';
-import { doNothing, getButtonUnderlayColor } from '../../utils/common';
+import { doNothing, getButtonUnderlayColor } from '../../utils/functions';
 import { LinearLayout, Spinner, Text } from '../elements';
 import { styles } from './styles';
 

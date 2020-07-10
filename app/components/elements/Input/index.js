@@ -93,7 +93,7 @@ export const Input = ({
         editable={!disabled}
         placeholderTextColor={EStyleSheet.value('$primaryLightGray')}
         placeholder={placeholder}
-        onChangeText={text => onChangeText(text)}
+        onChangeText={(text) => onChangeText(text)}
         value={value === null ? '' : value.toString()}
         maxLength={maxLength || undefined}
         keyboardType={keyboardType}

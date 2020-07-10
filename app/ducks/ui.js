@@ -1,9 +1,10 @@
 import { createAction, handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 
+export const key = 'UI';
+
 export const types = {
-  MAIN: 'UI',
-  STORE_DATA: 'UI/STORE_DATA',
+  STORE_DATA: `${key}/STORE_DATA`,
 };
 
 export const initialState = {
@@ -24,9 +25,9 @@ export const actions = {
   storeData: createAction(types.STORE_DATA),
 };
 
-const selectState = state => state[types.MAIN] || initialState;
+const selectState = (state) => state[key] || initialState;
 export const selectors = {
-  selectIsViewingImage: () => createSelector(selectState, state => state.isViewingImage),
+  selectIsViewingImage: () => createSelector(selectState, (state) => state.isViewingImage),
 };
 
 export default reducer;

@@ -4,19 +4,19 @@ import React from 'react';
 import { View } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const getOrientationStyles = memoize(orientation =>
+const getOrientationStyles = memoize((orientation) =>
   EStyleSheet.create({
     flexDirection: orientation === 'vertical' ? 'column' : 'row',
   }),
 );
 
-const getAlignItemsStyles = memoize(alignItems =>
+const getAlignItemsStyles = memoize((alignItems) =>
   EStyleSheet.create({
     alignItems,
   }),
 );
 
-const getJustifyContentStyles = memoize(justifyContent =>
+const getJustifyContentStyles = memoize((justifyContent) =>
   EStyleSheet.create({
     justifyContent,
   }),

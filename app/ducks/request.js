@@ -68,7 +68,7 @@ const reducer = handleActions(
     [types.RESET_MANY]: (state, { payload: keys }) => {
       const { requestStatus, errors } = state;
 
-      keys.forEach(key => {
+      keys.forEach((key) => {
         requestStatus[key] = request.NONE;
         errors[key] = [];
       });
@@ -91,26 +91,26 @@ export const actions = {
   resetMany: createAction(types.RESET_MANY),
 };
 
-const selectRequest = state => state[REQUEST_KEY] || initialState;
+const selectRequest = (state) => state[REQUEST_KEY] || initialState;
 export const selectors = {
-  selectError: key => createSelector(selectRequest, state => state.errors[key] || []),
-  selectRequestStatus: key =>
-    createSelector(selectRequest, state => state.requestStatus[key] || request.NONE),
+  selectError: (key) => createSelector(selectRequest, (state) => state.errors[key] || []),
+  selectRequestStatus: (key) =>
+    createSelector(selectRequest, (state) => state.requestStatus[key] || request.NONE),
 
-  selectManyErrors: keys =>
-    createSelector(selectRequest, state => {
+  selectManyErrors: (keys) =>
+    createSelector(selectRequest, (state) => {
       const errors = {};
-      keys.forEach(key => {
+      keys.forEach((key) => {
         errors[key] = key in state.errors ? state.errors[key] : [];
       });
 
       return errors;
     }),
 
-  selectManyRequestStatus: keys =>
-    createSelector(selectRequest, state => {
+  selectManyRequestStatus: (keys) =>
+    createSelector(selectRequest, (state) => {
       const status = {};
-      keys.forEach(key => {
+      keys.forEach((key) => {
         status[key] = key in state.requestStatus ? state.requestStatus[key] : request.NONE;
       });
 

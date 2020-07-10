@@ -38,12 +38,14 @@ export const Button = ({
   style,
   textStyle,
   loadingColor,
+  touchableStyle,
   underlayColor,
 }) => (
   <TouchableHighlight
     underlayColor={underlayColor}
     onPress={onPress}
     disabled={disabled || loading}
+    style={touchableStyle}
   >
     <View>
       {!loading ? (
@@ -80,6 +82,7 @@ Button.propTypes = {
   rightIcon: PropTypes.any,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   textStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  touchableStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   underlayColor: PropTypes.string,
   loading: PropTypes.bool,
   loadingColor: PropTypes.string,

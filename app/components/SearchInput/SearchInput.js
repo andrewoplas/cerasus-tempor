@@ -65,7 +65,7 @@ export const SearchInput = ({
           style={[styles.input]}
           maxLength={128}
           returnKeyType="search"
-          onChangeText={text => {
+          onChangeText={(text) => {
             setCanClear(text.length !== 0);
             onHandleChange(fieldKey, text);
           }}
