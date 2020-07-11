@@ -14,7 +14,7 @@ const styles = EStyleSheet.create({
   seconds: {
     color: '#fff',
     fontSize: RFValue(20),
-    marginBottom: 20,
+    marginBottom: 25,
   },
 
   label: {

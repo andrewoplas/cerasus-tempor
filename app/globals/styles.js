@@ -1,11 +1,10 @@
 const colors = {
-  $primaryRed: '#e43d2c',
-  $primaryOrange: '#ff6624',
-  $primaryGreen: '#2ecc71',
-  $primaryYellow: '#fec63d',
-  $primaryBlue: '#1464f6',
-  $primaryBlack: '#313131',
-  $headerColor: '#414141',
+  $themeRed: '#e43d2c',
+  $themeGreen: '#2ecc71',
+  $themeYellow: '#fca311',
+  $themeBlack: '#313131',
+  $themeHeaderColor: '#414141',
+  $themeLightGray: '#e5e5e5',
 
   $primaryLighterGray: '#ebebeb',
   $primaryLightGray: '#d6d6d6',
@@ -28,16 +27,9 @@ const textSize = {
 const font = {
   $fontNumber: 'OpenSans-Regular',
   $fontNumberBold: 'OpenSans-Bold',
-  $fontLight: 'TTNorms-Light',
-  $fontLightItalic: 'TTNorms-LightItalic',
-  $fontRegular: 'TTNorms-Regular',
-  $fontItalic: 'TTNorms-Italic',
-  $fontMedium: 'TTNorms-Medium',
-  $fontMediumItalic: 'TTNorms-MediumItalic',
-  $fontSemiBold: 'TTNorms-Bold',
-  $fontSemiBoldItalic: 'TTNorms-BoldItalic',
-  $fontBold: 'TTNorms-Bold',
-  $fontBoldItalic: 'TTNorms-BoldItalic',
+  $fontLight: 'ProximaNova-Light',
+  $fontRegular: 'ProximaNova-Regular',
+  $fontBold: 'ProximaNova-Bold',
 };
 
 export default {

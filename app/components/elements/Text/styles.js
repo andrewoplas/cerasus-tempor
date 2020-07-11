@@ -12,11 +12,9 @@ const fontSizes = {
 };
 
 const fontWeight = {
-  light: 'TTNorms-Light',
-  normal: 'TTNorms-Regular',
-  medium: 'TTNorms-Medium',
-  semiBold: 'TTNorms-Bold',
-  bold: 'TTNorms-Bold',
+  light: 'ProximaNova-Light',
+  normal: 'ProximaNova-Regular',
+  bold: 'ProximaNova-Bold',
   number: 'OpenSans-Regular',
   numberBold: 'OpenSans-Bold',
 };
@@ -26,6 +24,6 @@ export const getTextStyle = memoize((key, size, weight, align) =>
     fontSize: fontSizes[size],
     fontFamily: fontWeight[weight],
     textAlign: align,
-    color: EStyleSheet.value('$headerColor'),
+    color: EStyleSheet.value('$themeHeaderColor'),
   }),
 );

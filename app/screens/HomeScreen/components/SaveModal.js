@@ -6,17 +6,13 @@ import RNModal from 'react-native-modal';
 import { Button, Input, LinearLayout } from '../../../components/elements';
 
 const styles = EStyleSheet.create({
-  modal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
   modalContent: {
+    width: '100%',
     backgroundColor: 'white',
-    paddingHorizontal: '$paddingHorizontal',
-    paddingVertical: 35,
+    paddingHorizontal: 30,
+    paddingVertical: 30,
+    borderRadius: 10,
     borderColor: 'rgba(0, 0, 0, 0.1)',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
   },
 
   saveActions: {
@@ -47,9 +43,9 @@ export const SaveModal = ({
     backdropTransitionInTiming={500}
     backdropTransitionOutTiming={0}
     isVisible={isVisible}
-    style={styles.modal}
     onBackButtonPress={onClose}
     onBackdropPress={onClose}
+    hideModalContentWhileAnimating
   >
     <View style={styles.modalContent}>
       <Input

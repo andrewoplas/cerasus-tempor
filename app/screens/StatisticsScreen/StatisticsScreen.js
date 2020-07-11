@@ -7,19 +7,19 @@ import { Header } from '../../components/Header/Header';
 import { TimeList } from '../../components/TimeList';
 import { selectors } from '../../ducks/time';
 
-const SaveNowScreen = ({ times }) => (
+const StatisticsScreen = ({ times }) => (
   <Container>
-    <Header title="Save Now" />
+    <Header title="Statistics" />
     <TimeList times={times} />
   </Container>
 );
 
-SaveNowScreen.propTypes = {
+StatisticsScreen.propTypes = {
   times: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  times: selectors.selectSavedNowTimes(),
+  times: selectors.selectTimes(),
 });
 
-export default connect(mapStateToProps, null)(SaveNowScreen);
+export default connect(mapStateToProps, null)(StatisticsScreen);

@@ -39,7 +39,7 @@ export const SelectModal = ({ title, items, onSelectItem, isVisible, onClose }) 
                 EStyleSheet.child(styles, 'textContainerBorder', index, items.length),
               ]}
             >
-              <Text kind="h4" fontWeight="medium">
+              <Text kind="h4" fontWeight="bold">
                 {label}
               </Text>
             </TouchableHighlight>

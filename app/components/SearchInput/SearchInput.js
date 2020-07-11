@@ -22,7 +22,7 @@ const styles = EStyleSheet.create({
 
   input: {
     flex: 1,
-    color: '$primaryBlack',
+    color: '$themeBlack',
   },
 
   clearButtonContainer: {
@@ -85,7 +85,7 @@ export const SearchInput = ({
               <AntDesignIcon
                 style={styles.icon}
                 name="closecircle"
-                color={EStyleSheet.value('$primaryRed')}
+                color={EStyleSheet.value('$themeRed')}
                 size={16}
               />
             }
@@ -99,7 +99,7 @@ export const SearchInput = ({
           <AntDesignIcon
             style={styles.icon}
             name="search1"
-            color={EStyleSheet.value('$primaryRed')}
+            color={EStyleSheet.value('$themeRed')}
             size={24}
           />
         }

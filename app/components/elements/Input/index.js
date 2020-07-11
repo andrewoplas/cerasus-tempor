@@ -26,8 +26,8 @@ const styles = EStyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
     paddingVertical: 15,
-    color: '$primaryBlack',
-    fontFamily: '$fontMedium',
+    color: '$themeBlack',
+    fontFamily: '$fontRegular',
     fontSize: RFValue(18),
   },
 
@@ -38,13 +38,13 @@ const styles = EStyleSheet.create({
   inputRightIcon: {
     marginRight: 10,
     fontSize: RFValue(18),
-    color: '$primaryRed',
+    color: '$themeRed',
   },
 
   inputLeftIcon: {
     marginRight: 10,
     fontSize: RFValue(18),
-    color: '$primaryRed',
+    color: '$themeRed',
   },
 
   iconContainerLeft: {

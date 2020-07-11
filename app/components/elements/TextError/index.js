@@ -12,13 +12,13 @@ const styles = EStyleSheet.create({
   },
 
   text: {
-    color: '$primaryRed',
+    color: '$themeRed',
   },
 
   icon: {
     marginRight: 10,
     fontSize: RFValue(18),
-    color: '$primaryRed',
+    color: '$themeRed',
   },
 });
 

@@ -19,7 +19,7 @@
 //   const INACTIVE_ACTIONS = [
 //     {
 //       name: 'Ok',
-//       color: EStyleSheet.value('$primaryBlack'),
+//       color: EStyleSheet.value('$themeBlack'),
 //       onPress: () => {
 //         logout();
 //       },
@@ -51,7 +51,7 @@
 
 //       <Modal
 //         isVisible={inactiveModal}
-//         icon={<Icon name="md-alert" size={25} color={EStyleSheet.value('$primaryRed')} />}
+//         icon={<Icon name="md-alert" size={25} color={EStyleSheet.value('$themeRed')} />}
 //         title="Access Token Expired"
 //         message={messages.UNAUTHORIZED}
 //         actionButtons={INACTIVE_ACTIONS}

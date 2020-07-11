@@ -22,7 +22,7 @@ const styles = EStyleSheet.create({
   message: {
     fontFamily: '$fontRegular',
     fontSize: RFValue(16),
-    color: '$primaryBlack',
+    color: '$themeBlack',
   },
 
   icon: {
@@ -55,7 +55,7 @@ export const Toast = ({ message, onShowEnd, isError }) => {
               style={styles.icon}
               name={isError ? 'close' : 'check'}
               size={18}
-              color={EStyleSheet.value(isError ? '$primaryRed' : '$primaryGreen')}
+              color={EStyleSheet.value(isError ? '$themeRed' : '$themeGreen')}
             />
             <Text style={styles.message}>{message}</Text>
           </LinearLayout>

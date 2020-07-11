@@ -11,11 +11,11 @@ const styles = EStyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '$primaryRed',
+    backgroundColor: '$themeYellow',
     justifyContent: 'center',
     fontFamily: '$fontRegular',
-    padding: RFValue(20),
-    borderRadius: 6,
+    padding: RFValue(15),
+    borderRadius: 4,
   },
 
   disabled: {

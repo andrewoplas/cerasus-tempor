@@ -21,7 +21,7 @@ const styles = EStyleSheet.create({
   connectionContainer: {
     width: Dimensions.get('window').width,
     position: 'absolute',
-    backgroundColor: '$primaryRed',
+    backgroundColor: '$themeRed',
     paddingVertical: 3,
   },
 

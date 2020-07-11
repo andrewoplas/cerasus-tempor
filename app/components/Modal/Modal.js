@@ -63,7 +63,7 @@ export const Modal = ({
 
               {messages &&
                 messages.map((message, index) => (
-                  <Text key={`message-${index}`} fontWeight="medium" style={styles.description}>
+                  <Text key={`message-${index}`} fontWeight="bold" style={styles.description}>
                     {message}
                   </Text>
                 ))}

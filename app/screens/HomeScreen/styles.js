@@ -4,10 +4,12 @@ import { RFValue } from 'react-native-responsive-fontsize';
 export const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
     paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: '$paddingHorizontal',
+    alignItems: 'center',
+    justifyContent: 'center',
+    resizeMode: 'cover',
   },
 
   divider: {
@@ -20,5 +22,14 @@ export const styles = EStyleSheet.create({
   buttonContainer: {
     width: '100%',
     marginTop: 30,
+    paddingHorizontal: 40,
+  },
+
+  buttons: {
+    flex: 1,
+  },
+
+  buttonSpacing: {
+    marginRight: 5,
   },
 });

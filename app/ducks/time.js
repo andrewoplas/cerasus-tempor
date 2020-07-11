@@ -16,18 +16,20 @@ export const initialState = {
 const reducer = handleActions(
   {
     [types.SAVE_NOW]: (state, { payload }) => ({
-      savedNowTimes: [payload, ...state.times],
+      ...state,
+      savedNowTimes: [payload, ...state.savedNowTimes],
     }),
     [types.SAVE_LATER]: (state, { payload }) => ({
-      savedLaterTimes: [payload, ...state.times],
+      ...state,
+      savedLaterTimes: [payload, ...state.savedLaterTimes],
     }),
   },
   initialState,
 );
 
 export const actions = {
-  saveNow: createAction(types.SAVE_TIME),
-  saveLater: createAction(types.SAVE_TIME),
+  saveNow: createAction(types.SAVE_NOW),
+  saveLater: createAction(types.SAVE_LATER),
 };
 
 const selectState = (state) => state[key] || initialState;
