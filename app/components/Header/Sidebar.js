@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ImageBackground, View, TouchableHighlight } from 'react-native';
+import { ImageBackground, View, TouchableHighlight, SafeAreaView } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import RNModal from 'react-native-modal';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -22,7 +22,7 @@ export const styles = EStyleSheet.create({
   },
 
   background: {
-    paddingTop: 25,
+    backgroundColor: '#000',
     resizeMode: 'cover',
     flex: 1,
   },
@@ -90,9 +90,8 @@ export const Sidebar = ({ isVisible, onItemPress, currentScreen, onClose }) => (
     onBackButtonPress={onClose}
     onBackdropPress={onClose}
     style={styles.modal}
-    hideModalContentWhileAnimating
   >
-    <View style={styles.modalContent}>
+    <SafeAreaView style={styles.modalContent}>
       <ImageBackground source={backgroundImage} style={styles.background}>
         {sidebarItems.map(({ screen, icon, label }) => (
           <TouchableHighlight key={screen} onPress={() => onItemPress(screen)}>
@@ -107,7 +106,7 @@ export const Sidebar = ({ isVisible, onItemPress, currentScreen, onClose }) => (
           </TouchableHighlight>
         ))}
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   </RNModal>
 );
 

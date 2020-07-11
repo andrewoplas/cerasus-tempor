@@ -43,7 +43,7 @@ export const Container = ({ withScroll, spacing, style, children }) => {
     };
   }, []);
 
-  const statusBar = Platform.OS === 'android' ? <StatusBar backgroundColor="black" /> : null;
+  const statusBar = <StatusBar backgroundColor="black" />;
 
   return (
     <SafeAreaView style={styles.container}>

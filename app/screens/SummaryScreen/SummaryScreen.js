@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Container, Text, LinearLayout } from '../../components/elements';
-import { Header } from '../../components/Header/Header';
-import { selectors } from '../../ducks/time';
-import { styles } from './styles';
-
 import secondsImage from '../../assets/images/bermuda-no-comments.png';
 import minutesImage from '../../assets/images/bermuda-no-message.png';
 import hoursImage from '../../assets/images/bermuda-page-under-construction.png';
-import { Image, ScrollView } from 'react-native';
+import { Container, LinearLayout, Text } from '../../components/elements';
+import { Header } from '../../components/Header/Header';
+import { selectors } from '../../ducks/time';
+import { styles } from './styles';
 
 const SummaryScreen = ({ times }) => {
   const [totalSeconds, setTotalSeconds] = useState(0);
@@ -48,7 +47,7 @@ const SummaryScreen = ({ times }) => {
               </Text>
 
               <Text style={styles.itemDescription}>
-                {totalSeconds} seconds of your life has been wasted.
+                {totalSeconds.toFixed(2)} seconds of your life has been wasted.
               </Text>
             </LinearLayout>
           </LinearLayout>
@@ -60,7 +59,7 @@ const SummaryScreen = ({ times }) => {
               </Text>
 
               <Text style={styles.itemDescription}>
-                {totalMinutes} minutes of your life has been wasted.
+                {totalMinutes.toFixed(2)} minutes of your life has been wasted.
               </Text>
             </LinearLayout>
             <Image source={minutesImage} style={[styles.itemImage, styles.itemImageRight]} />
@@ -74,7 +73,7 @@ const SummaryScreen = ({ times }) => {
               </Text>
 
               <Text style={styles.itemDescription}>
-                {totalHours} seconds of your life has been wasted.
+                {totalHours.toFixed(2)} hours of your life has been wasted.
               </Text>
             </LinearLayout>
           </LinearLayout>
