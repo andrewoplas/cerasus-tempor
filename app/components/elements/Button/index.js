@@ -15,7 +15,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'center',
     fontFamily: '$fontRegular',
     padding: RFValue(15),
-    borderRadius: 4,
+    borderRadius: 40,
   },
 
   disabled: {

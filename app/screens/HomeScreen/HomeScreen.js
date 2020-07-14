@@ -5,7 +5,7 @@ import { ImageBackground } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import backgroundImage from '../../assets/images/background.png';
+import backgroundImage from '../../assets/images/background.jpg';
 import { Button, Container, LinearLayout, Text } from '../../components/elements';
 import { actions } from '../../ducks/time';
 import { TIMER_INTERVAL } from '../../globals/variables';
@@ -119,7 +119,11 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
         <Header title="" homeScreen />
 
         <Animatable.View ref={TimerRef}>
-          <LinearLayout orientation="horizontal" alignItems="flex-end">
+          <LinearLayout
+            orientation="horizontal"
+            alignItems="flex-end"
+            style={styles.timerContainer}
+          >
             <TimeNumber label="HOURS" time={hours} main />
             <Text fontWeight="bold" align="center" style={styles.divider}>
               :

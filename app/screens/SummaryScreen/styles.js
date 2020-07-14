@@ -10,6 +10,7 @@ export const styles = EStyleSheet.create({
     marginTop: 20,
     marginBottom: 15,
     fontSize: RFValue(22),
+    color: '#fff',
   },
 
   itemContainer: {

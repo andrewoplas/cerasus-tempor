@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import secondsImage from '../../assets/images/bermuda-no-comments.png';
@@ -31,7 +32,7 @@ const SummaryScreen = ({ times }) => {
   }, [times]);
 
   return (
-    <Container>
+    <Container styleBackground={{ backgroundColor: EStyleSheet.value('$themeDarkBlue') }}>
       <Header title="Summary" />
       <ScrollView>
         <LinearLayout style={styles.container}>

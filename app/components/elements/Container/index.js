@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
   },
 });
 
-export const Container = ({ withScroll, spacing, style, children }) => {
+export const Container = ({ withScroll, spacing, style, styleBackground, children }) => {
   const [isConnected, setConnection] = useState(true);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const Container = ({ withScroll, spacing, style, children }) => {
   const statusBar = <StatusBar backgroundColor="black" />;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, styleBackground]}>
       {!isConnected && (
         <View style={styles.connectionContainer}>
           <Text align="center" style={styles.connectionText}>
@@ -76,6 +76,7 @@ Container.defaultProps = {
 Container.propTypes = {
   withScroll: PropTypes.bool,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  styleBackground: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   children: PropTypes.any,
   spacing: PropTypes.bool,
 };
