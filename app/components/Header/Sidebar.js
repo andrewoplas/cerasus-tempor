@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ImageBackground, View, TouchableHighlight, SafeAreaView } from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableHighlight } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import RNModal from 'react-native-modal';
 import { RFValue } from 'react-native-responsive-fontsize';
 import AntdIcon from 'react-native-vector-icons/AntDesign';
-import backgroundImage from '../../assets/images/background.png';
+import backgroundImage from '../../assets/images/background-dark.png';
 import { LinearLayout, Text } from '../elements';
 
 export const styles = EStyleSheet.create({

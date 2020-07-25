@@ -5,10 +5,8 @@ export const styles = EStyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 10,
-    paddingBottom: 10,
-    paddingHorizontal: '$paddingHorizontal',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     resizeMode: 'cover',
   },
 
@@ -19,10 +17,23 @@ export const styles = EStyleSheet.create({
     marginBottom: 18,
   },
 
+  mainContainer: {
+    width: '100%',
+    paddingVertical: 25,
+    paddingHorizontal: 25,
+    backgroundColor: '#000',
+  },
+
+  timerContainer: {
+    marginTop: 0,
+    backgroundColor: '#000',
+  },
+
   buttonContainer: {
     width: '100%',
-    marginTop: 30,
+    marginTop: 15,
     paddingHorizontal: 40,
+    backgroundColor: '#000',
   },
 
   buttons: {
@@ -30,6 +41,6 @@ export const styles = EStyleSheet.create({
   },
 
   buttonSpacing: {
-    marginRight: 5,
+    marginRight: 15,
   },
 });

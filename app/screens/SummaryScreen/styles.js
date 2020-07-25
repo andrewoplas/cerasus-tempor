@@ -10,19 +10,22 @@ export const styles = EStyleSheet.create({
     marginTop: 20,
     marginBottom: 15,
     fontSize: RFValue(22),
+    color: '#fff',
   },
 
   itemContainer: {
-    padding: 20,
+    paddingRight: 20,
     marginBottom: 15,
     borderRadius: 8,
     backgroundColor: '#fff',
   },
 
   itemImage: {
-    height: 100,
+    height: 120,
     width: 100,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
   },
 
   itemImageLeft: {

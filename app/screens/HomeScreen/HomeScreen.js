@@ -1,18 +1,18 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
-import { ImageBackground } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { AppState, ImageBackground } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import backgroundImage from '../../assets/images/background.png';
+import backgroundImage from '../../assets/images/background.jpg';
 import { Button, Container, LinearLayout, Text } from '../../components/elements';
+import { Header } from '../../components/Header/Header';
 import { actions } from '../../ducks/time';
 import { TIMER_INTERVAL } from '../../globals/variables';
 import { SaveModal } from './components/SaveModal';
 import { TimeNumber } from './components/TimeNumber';
 import { styles } from './styles';
-import { Header } from '../../components/Header/Header';
 
 const HomeScreen = ({ saveNow, saveLater, navigation }) => {
   const [hours, setHours] = useState(0);
@@ -20,9 +20,7 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
   const [seconds, setSeconds] = useState(0);
   const [isTimerRunning, setTimerRunning] = useState(false);
   const [hasEnded, setHasEnded] = useState(false);
-
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [isPaused, setPause] = useState(false);
 
   // Modal
   const [saveModalVisible, setSaveModalVisible] = useState(false);
@@ -32,32 +30,76 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
   // Ref
   const timerTimeOut = useRef(null);
   const TimerRef = useRef(null);
+  const appState = useRef(AppState.currentState);
+  const startDate = useRef(null);
+  const endDate = useRef(null);
+
+  // App state listener
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, [isTimerRunning, startDate]);
+
+  const handleAppStateChange = (nextAppState) => {
+    if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
+      onAppForeground();
+    }
+
+    appState.current = nextAppState;
+  };
+
+  // On Focus
+  const onAppForeground = () => {
+    if (isTimerRunning && startDate.current) {
+      // Pause for a while
+      setPause(true);
+
+      // Calculate time difference
+      let diffSeconds = (new Date().getTime() - startDate.current.getTime()) / 1000; // Total seconds
+      const diffHours = diffSeconds / 3600; // Hours
+      diffSeconds %= 3600;
+      const diffMinutes = diffSeconds / 60; // Minutes
+      diffSeconds %= 60;
+
+      setHours(Math.floor(diffHours));
+      setMinutes(Math.floor(diffMinutes));
+      setSeconds(Math.floor(diffSeconds));
+
+      // Continue timer
+      setPause(false);
+    }
+  };
 
   const onStartTimer = () => {
     setTimerRunning(true);
-    setStartDate(new Date());
+    startDate.current = new Date();
 
     // eslint-disable-next-line no-unused-expressions
     TimerRef?.current?.bounce();
 
     timerTimeOut.current = setInterval(() => {
-      setSeconds((previousSeconds) => {
-        const currentSeconds = previousSeconds + 1;
+      if (!isPaused) {
+        setSeconds((previousSeconds) => {
+          const currentSeconds = previousSeconds + 1;
 
-        if (currentSeconds === 60) {
-          setMinutes((previousMinutes) => {
-            const currentMinutes = previousMinutes + 1;
+          if (currentSeconds === 60) {
+            setMinutes((previousMinutes) => {
+              const currentMinutes = previousMinutes + 1;
 
-            if (currentMinutes === 60) {
-              setHours((previousHours) => previousHours + 1);
-            }
+              if (currentMinutes === 60) {
+                setHours((previousHours) => previousHours + 1);
+              }
 
-            return currentMinutes % 60;
-          });
-        }
+              return currentMinutes % 60;
+            });
+          }
 
-        return currentSeconds % 60;
-      });
+          return currentSeconds % 60;
+        });
+      }
     }, TIMER_INTERVAL);
   };
 
@@ -65,7 +107,7 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
     clearTimeout(timerTimeOut.current);
     setTimerRunning(false);
     setHasEnded(true);
-    setEndDate(new Date());
+    endDate.current = new Date();
     setGeneratedTitle(moment().format('MMDDYYYY'));
 
     // eslint-disable-next-line no-unused-expressions
@@ -79,8 +121,8 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
     setHours(0);
     setMinutes(0);
     setSeconds(0);
-    setStartDate(null);
-    setEndDate(null);
+    startDate.current = null;
+    endDate.current = null;
     setTimerRunning(false);
     setHasEnded(false);
 
@@ -109,8 +151,8 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
     id: moment().valueOf().toString(),
     title: title.length > 0 ? title : generatedTitle,
     time: { hours, minutes, seconds },
-    startDate,
-    endDate,
+    startDate: startDate.current,
+    endDate: endDate.current,
   });
 
   return (
@@ -118,35 +160,41 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
       <ImageBackground source={backgroundImage} style={styles.container}>
         <Header title="" homeScreen />
 
-        <Animatable.View ref={TimerRef}>
-          <LinearLayout orientation="horizontal" alignItems="flex-end">
-            <TimeNumber label="HOURS" time={hours} main />
-            <Text fontWeight="bold" align="center" style={styles.divider}>
-              :
-            </Text>
-            <TimeNumber label="MINUTES" time={minutes} main />
-            <TimeNumber time={seconds} />
-          </LinearLayout>
-        </Animatable.View>
+        <LinearLayout alignItems="center" style={styles.mainContainer}>
+          <Animatable.View ref={TimerRef}>
+            <LinearLayout
+              orientation="horizontal"
+              alignItems="flex-end"
+              style={styles.timerContainer}
+            >
+              <TimeNumber label="HOURS" time={hours} main />
+              <Text fontWeight="bold" align="center" style={styles.divider}>
+                :
+              </Text>
+              <TimeNumber label="MINUTES" time={minutes} main />
+              <TimeNumber time={seconds} />
+            </LinearLayout>
+          </Animatable.View>
 
-        {hasEnded ? (
-          <LinearLayout orientation="horizontal" style={styles.buttonContainer}>
-            <Button
-              text="Reset"
-              onPress={onReset}
-              touchableStyle={[styles.buttons, styles.buttonSpacing]}
-            />
-            <Button text="Save" onPress={onSave} touchableStyle={styles.buttons} />
-          </LinearLayout>
-        ) : (
-          <LinearLayout style={styles.buttonContainer}>
-            {isTimerRunning ? (
-              <Button text="Stop" onPress={onStopTimer} />
-            ) : (
-              <Button text="Start" onPress={onStartTimer} />
-            )}
-          </LinearLayout>
-        )}
+          {hasEnded ? (
+            <LinearLayout orientation="horizontal" style={styles.buttonContainer}>
+              <Button
+                text="Reset"
+                onPress={onReset}
+                touchableStyle={[styles.buttons, styles.buttonSpacing]}
+              />
+              <Button text="Save" onPress={onSave} touchableStyle={styles.buttons} />
+            </LinearLayout>
+          ) : (
+            <LinearLayout style={styles.buttonContainer}>
+              {isTimerRunning ? (
+                <Button text="Stop" onPress={onStopTimer} />
+              ) : (
+                <Button text="Start" onPress={onStartTimer} />
+              )}
+            </LinearLayout>
+          )}
+        </LinearLayout>
 
         <SaveModal
           isVisible={saveModalVisible}

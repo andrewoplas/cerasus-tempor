@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import secondsImage from '../../assets/images/bermuda-no-comments.png';
-import minutesImage from '../../assets/images/bermuda-no-message.png';
-import hoursImage from '../../assets/images/bermuda-page-under-construction.png';
+import backgroundImage from '../../assets/images/background.jpg';
 import { Container, LinearLayout, Text } from '../../components/elements';
 import { Header } from '../../components/Header/Header';
 import { selectors } from '../../ducks/time';
@@ -31,7 +30,7 @@ const SummaryScreen = ({ times }) => {
   }, [times]);
 
   return (
-    <Container>
+    <Container styleBackground={{ backgroundColor: EStyleSheet.value('$themeDarkBlue') }}>
       <Header title="Summary" />
       <ScrollView>
         <LinearLayout style={styles.container}>
@@ -40,7 +39,7 @@ const SummaryScreen = ({ times }) => {
           </Text>
 
           <LinearLayout orientation="horizontal" alignItems="center" style={styles.itemContainer}>
-            <Image source={secondsImage} style={[styles.itemImage, styles.itemImageLeft]} />
+            <Image source={backgroundImage} style={[styles.itemImage, styles.itemImageLeft]} />
             <LinearLayout style={{ flexShrink: 1 }}>
               <Text fontWeight="bold" style={styles.itemHeader}>
                 WASTED SECONDS
@@ -53,6 +52,7 @@ const SummaryScreen = ({ times }) => {
           </LinearLayout>
 
           <LinearLayout orientation="horizontal" alignItems="center" style={styles.itemContainer}>
+            <Image source={backgroundImage} style={[styles.itemImage, styles.itemImageLeft]} />
             <LinearLayout style={{ flexShrink: 1 }}>
               <Text fontWeight="bold" style={styles.itemHeader}>
                 WASTED MINUTES
@@ -62,11 +62,10 @@ const SummaryScreen = ({ times }) => {
                 {totalMinutes.toFixed(2)} minutes of your life has been wasted.
               </Text>
             </LinearLayout>
-            <Image source={minutesImage} style={[styles.itemImage, styles.itemImageRight]} />
           </LinearLayout>
 
           <LinearLayout orientation="horizontal" alignItems="center" style={styles.itemContainer}>
-            <Image source={hoursImage} style={[styles.itemImage, styles.itemImageLeft]} />
+            <Image source={backgroundImage} style={[styles.itemImage, styles.itemImageLeft]} />
             <LinearLayout style={{ flexShrink: 1 }}>
               <Text fontWeight="bold" style={styles.itemHeader}>
                 WASTED HOURS

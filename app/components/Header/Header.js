@@ -19,19 +19,16 @@ const styles = EStyleSheet.create({
   containerHomeScreen: {
     position: 'absolute',
     top: 0,
-    paddingHorizontal: 0,
   },
 
   icon: {
     fontSize: RFValue(20),
-  },
-
-  iconHome: {
     color: '#fff',
   },
 
   title: {
     fontSize: RFValue(22),
+    color: '#fff',
   },
 });
 
@@ -68,7 +65,7 @@ export const Header = ({ title, homeScreen }) => {
         underlayColor="transparent"
         onPress={() => setSidebarModalVisibility(true)}
       >
-        <AntdIcon name="menu-unfold" style={[styles.icon, homeScreen ? styles.iconHome : null]} />
+        <AntdIcon name="menu-unfold" style={[styles.icon]} />
       </TouchableHighlight>
 
       <Sidebar

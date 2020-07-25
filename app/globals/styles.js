@@ -1,10 +1,13 @@
 const colors = {
   $themeRed: '#e43d2c',
-  $themeGreen: '#2ecc71',
   $themeYellow: '#fca311',
   $themeBlack: '#313131',
   $themeHeaderColor: '#414141',
   $themeLightGray: '#e5e5e5',
+
+  $themeGreen: '#56bda2',
+  $themeTeal: '#2494a2',
+  $themeDarkBlue: '#304b7a',
 
   $primaryLighterGray: '#ebebeb',
   $primaryLightGray: '#d6d6d6',
