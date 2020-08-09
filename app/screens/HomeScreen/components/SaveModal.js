@@ -34,8 +34,7 @@ export const SaveModal = ({
   onChangeText,
   inputValue,
   inputGeneratedValue,
-  onSaveNow,
-  onSaveLater,
+  onSave,
 }) => (
   <RNModal
     animationInTiming={500}
@@ -57,11 +56,10 @@ export const SaveModal = ({
 
       <LinearLayout orientation="horizontal" style={styles.saveActions}>
         <Button
-          text="Save Now"
-          onPress={onSaveNow}
+          text="Submit"
+          onPress={onSave}
           touchableStyle={[styles.buttonSpacing, styles.saveButton]}
         />
-        <Button text="Save Later" onPress={onSaveLater} touchableStyle={styles.saveButton} />
       </LinearLayout>
     </View>
   </RNModal>
@@ -73,6 +71,5 @@ SaveModal.propTypes = {
   onChangeText: PropTypes.func.isRequired,
   inputValue: PropTypes.string,
   inputGeneratedValue: PropTypes.string,
-  onSaveNow: PropTypes.func.isRequired,
-  onSaveLater: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };

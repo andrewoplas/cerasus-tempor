@@ -16,11 +16,6 @@ const styles = EStyleSheet.create({
     paddingHorizontal: '$paddingHorizontal',
   },
 
-  containerHomeScreen: {
-    position: 'absolute',
-    top: 0,
-  },
-
   icon: {
     fontSize: RFValue(20),
     color: '#fff',
@@ -32,7 +27,7 @@ const styles = EStyleSheet.create({
   },
 });
 
-export const Header = ({ title, homeScreen }) => {
+export const Header = ({ title }) => {
   const [sidebarModalVisibility, setSidebarModalVisibility] = useState(false);
   const route = useRoute();
   const navigation = useNavigation();
@@ -41,25 +36,21 @@ export const Header = ({ title, homeScreen }) => {
     <LinearLayout
       orientation="horizontal"
       alignItems="center"
-      justifyContent={homeScreen ? 'flex-end' : 'space-between'}
-      style={[styles.container, homeScreen ? styles.containerHomeScreen : null]}
+      justifyContent="space-between"
+      style={styles.container}
     >
-      {!homeScreen && (
-        <TouchableHighlight
-          underlayColor="transparent"
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <AntdIcon name="arrowleft" style={styles.icon} />
-        </TouchableHighlight>
-      )}
+      <TouchableHighlight
+        underlayColor="transparent"
+        onPress={() => {
+          navigation.goBack();
+        }}
+      >
+        <AntdIcon name="arrowleft" style={styles.icon} />
+      </TouchableHighlight>
 
-      {!homeScreen && (
-        <Text align="center" fontWeight="bold" style={styles.title}>
-          {title}
-        </Text>
-      )}
+      <Text align="center" fontWeight="bold" style={styles.title}>
+        {title}
+      </Text>
 
       <TouchableHighlight
         underlayColor="transparent"
@@ -83,5 +74,4 @@ export const Header = ({ title, homeScreen }) => {
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  homeScreen: PropTypes.bool,
 };

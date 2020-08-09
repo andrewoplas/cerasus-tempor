@@ -54,17 +54,12 @@ const sidebarItems = [
   {
     screen: 'HomeScreen',
     icon: 'home',
-    label: 'Home',
+    label: 'Start',
   },
   {
-    screen: 'SaveNowScreen',
+    screen: 'SaveScreen',
     icon: 'clockcircleo',
-    label: 'Save Now',
-  },
-  {
-    screen: 'SaveLaterScreen',
-    icon: 'clockcircleo',
-    label: 'Save Later',
+    label: 'Saved Entries',
   },
   {
     screen: 'StatisticsScreen',

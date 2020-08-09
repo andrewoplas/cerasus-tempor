@@ -1,21 +1,26 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, TouchableHighlight } from 'react-native';
 import { ListItem } from './ListItem';
 
-export const TimeList = ({ times }) => (
+export const TimeList = ({ times, onDelete }) => (
   <FlatList
     data={times}
     contentContainerStyle={{ paddingBottom: 100 }}
     renderItem={({ item }) => (
-      <ListItem
-        title={item?.title}
-        startDate={item?.startDate}
-        endDate={item?.endDate}
-        hours={item?.time?.hours}
-        minutes={item?.time?.minutes}
-        seconds={item?.time?.seconds}
-      />
+      <TouchableHighlight
+        underlayColor="transparent"
+        onLongPress={() => onDelete(item.title, item.id)}
+      >
+        <ListItem
+          title={item?.title}
+          startDate={item?.startDate}
+          endDate={item?.endDate}
+          hours={item?.time?.hours}
+          minutes={item?.time?.minutes}
+          seconds={item?.time?.seconds}
+        />
+      </TouchableHighlight>
     )}
     keyExtractor={(item) => item.id}
   />
@@ -23,4 +28,5 @@ export const TimeList = ({ times }) => (
 
 TimeList.propTypes = {
   times: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };

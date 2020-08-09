@@ -4,40 +4,40 @@ import { createSelector } from 'reselect';
 export const key = 'TIME';
 
 export const types = {
-  SAVE_NOW: `${key}/SAVE_NOW`,
-  SAVE_LATER: `${key}/SAVE_LATER`,
+  SAVE_TIME: `${key}/SAVE_TIME`,
+  DELETE_TIME: `${key}/DELETE_TIME`,
 };
 
 export const initialState = {
-  savedNowTimes: [],
-  savedLaterTimes: [],
+  savedTimes: [],
 };
 
 const reducer = handleActions(
   {
-    [types.SAVE_NOW]: (state, { payload }) => ({
+    [types.SAVE_TIME]: (state, { payload }) => ({
       ...state,
-      savedNowTimes: [payload, ...state.savedNowTimes],
+      savedTimes: [payload, ...state.savedTimes],
     }),
-    [types.SAVE_LATER]: (state, { payload }) => ({
-      ...state,
-      savedLaterTimes: [payload, ...state.savedLaterTimes],
-    }),
+    [types.DELETE_TIME]: (state, { payload }) => {
+      const filteredTimes = state.savedTimes.filter(({ id }) => id !== payload);
+
+      return {
+        ...state,
+        savedTimes: filteredTimes,
+      };
+    },
   },
   initialState,
 );
 
 export const actions = {
-  saveNow: createAction(types.SAVE_NOW),
-  saveLater: createAction(types.SAVE_LATER),
+  saveTime: createAction(types.SAVE_TIME),
+  deleteTime: createAction(types.DELETE_TIME),
 };
 
 const selectState = (state) => state[key] || initialState;
 export const selectors = {
-  selectSavedNowTimes: () => createSelector(selectState, (state) => state.savedNowTimes),
-  selectSavedLaterTimes: () => createSelector(selectState, (state) => state.savedLaterTimes),
-  selectTimes: () =>
-    createSelector(selectState, (state) => [...state.savedNowTimes, ...state.savedLaterTimes]),
+  selectTimes: () => createSelector(selectState, (state) => state.savedTimes),
 };
 
 export default reducer;

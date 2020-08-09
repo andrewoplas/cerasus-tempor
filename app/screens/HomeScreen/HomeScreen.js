@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import backgroundImage from '../../assets/images/background.jpg';
 import { Button, Container, LinearLayout, Text } from '../../components/elements';
-import { Header } from '../../components/Header/Header';
+import { MainHeader } from '../../components/Header/MainHeader';
 import { actions } from '../../ducks/time';
 import { TIMER_INTERVAL } from '../../globals/variables';
 import { SaveModal } from './components/SaveModal';
 import { TimeNumber } from './components/TimeNumber';
 import { styles } from './styles';
 
-const HomeScreen = ({ saveNow, saveLater, navigation }) => {
+const HomeScreen = ({ saveTime, navigation }) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -135,21 +135,15 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
     setSaveModalVisible(true);
   };
 
-  const onSaveNow = () => {
-    saveNow(createTimeData());
+  const onSaveSubmit = () => {
+    saveTime(createTimeData());
     onReset();
-    navigation.navigate('SaveNowScreen');
-  };
-
-  const onSaveLater = () => {
-    saveLater(createTimeData());
-    onReset();
-    navigation.navigate('SaveLaterScreen');
+    navigation.navigate('SaveScreen');
   };
 
   const createTimeData = () => ({
     id: moment().valueOf().toString(),
-    title: title.length > 0 ? title : generatedTitle,
+    title: title?.length ? title : generatedTitle,
     time: { hours, minutes, seconds },
     startDate: startDate.current,
     endDate: endDate.current,
@@ -158,7 +152,7 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
   return (
     <Container style={{ flex: 1 }}>
       <ImageBackground source={backgroundImage} style={styles.container}>
-        <Header title="" homeScreen />
+        <MainHeader />
 
         <LinearLayout alignItems="center" style={styles.mainContainer}>
           <Animatable.View ref={TimerRef}>
@@ -201,8 +195,7 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
           inputValue={title}
           inputGeneratedValue={generatedTitle}
           onChangeText={(value) => setTitle(value.trimLeft())}
-          onSaveNow={onSaveNow}
-          onSaveLater={onSaveLater}
+          onSave={onSaveSubmit}
           onClose={() => setSaveModalVisible(false)}
         />
       </ImageBackground>
@@ -212,12 +205,11 @@ const HomeScreen = ({ saveNow, saveLater, navigation }) => {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-  saveNow: PropTypes.func.isRequired,
-  saveLater: PropTypes.func.isRequired,
+  saveTime: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  ...bindActionCreators({ saveNow: actions.saveNow, saveLater: actions.saveLater }, dispatch),
+  ...bindActionCreators({ saveTime: actions.saveTime }, dispatch),
 });
 
 export default connect(null, mapDispatchToProps)(HomeScreen);
